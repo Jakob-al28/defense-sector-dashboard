@@ -1,0 +1,33 @@
+# Defense Sector Dashboard
+
+A simple interactive Streamlit web app highlighting current trends in the defense sector.
+
+## Features
+
+**Overview Tab**  
+World map and time-series analysis of key indicators (military expenditure, GDP, etc.).
+
+**Market Tab**  
+Interactive table of current stock prices for defense-related companies and ETFs.
+
+**News Analysis Tab**  
+News scraping and VADER sentiment analysis for user-selected topics.
+
+## Installation
+
+1. **Create a virtual environment**  
+   python -m venv venv
+
+2. **Activate the environment**  
+   - On macOS/Linux:  
+     source venv/bin/activate
+   - On Windows:  
+     venv\Scripts\activate
+
+3. **Install dependencies**  
+   pip install -r requirements.txt
+
+## Running Locally
+
+From the project root directory, run:  
+streamlit run app.py
