@@ -491,20 +491,22 @@ def display_nlp(news_data, search_query="Rheinmetall"):
     else:
         st.warning("No text data available for word cloud generation")
     
-    st.markdown("### Recent Headlines")
-    
-    for i, article in enumerate(articles[:5]):
-        if article.get('title'):
-            original = article['title']
-            published = article.get('publishedAt', 'Unknown date')
-            detected_lang = languages_detected[i] if i < len(languages_detected) else ''
-            
-            with st.expander(f"Article {i+1} - {detected_lang.upper()}"):
-                st.write(f"**Original:** {original}")
+    with st.expander(f"Recent Headlines ({min(len(articles), 5)} articles)"):
+        for i, article in enumerate(articles[:5]):
+            if article.get('title'):
+                original = article['title']
+                published = article.get('publishedAt', 'Unknown date')
+                detected_lang = languages_detected[i] if i < len(languages_detected) else ''
+                    
+                st.write(f"**Article {i+1} - {detected_lang.upper()}:**")
+                st.write(f"{original}")
                 st.caption(f"Published: {published}")
-    
-    if len(articles) > 5:
-        st.caption(f"... and {len(articles) - 5} more articles")
+                
+                if i < min(len(articles), 5) - 1: 
+                    st.markdown("---")
+        
+        if len(articles) > 5:
+            st.caption(f"... and {len(articles) - 5} more articles")
 
 
 
