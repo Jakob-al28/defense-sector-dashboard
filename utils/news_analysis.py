@@ -55,10 +55,12 @@ def run_nlp(search_query="Rheinmetall"):
     
     print("Cache expired or missing - fetching new data...")
     
-    API_KEY = os.getenv('API_KEY')
-    
+    try:
+        API_KEY = st.secrets["API_KEY"]
+    except (KeyError, AttributeError):
+        API_KEY = os.getenv('API_KEY')    
     if not API_KEY:
-        print("ERROR: API_KEY not found in .env file")
+        print("ERROR: API_KEY not found in Streamlit Secrets or environment variables")
         return None
     
     from_date = (datetime.now() - timedelta(days=30)).strftime('%Y-%m-%d')
