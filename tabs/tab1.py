@@ -14,9 +14,10 @@ def switch(tab_idx: int) -> str:
         """
 
 def render_tab1():
+    st.info("This dashboard was designed for desktop use and dark mode enabled. Certain data might take a while to load.")
     st.markdown("## Overview")
-    st.markdown("Recent shifts in geopolitical tensions have led to a increase in defense spending. \n NATO has set a 5% GDP target for defense spending by 2027. \n The economy has not been growing as expected lately, and sustainability is becoming a more important factor.")
-    st.markdown("In this dashboard, we will take a look at these areas and analyze them.")
+    st.markdown("Recent shifts in geopolitical tensions have led to a increase in defense spending. \n NATO has set a 5% GDP target for defense spending by 2027. In this dashboard, we will take a look at the Defense sector and analyze it.") # \n The economy has not been growing as expected lately, and sustainability is becoming a more important factor.")
+    # st.markdown("In this dashboard, we will take a look at these areas and analyze them.")
     st.markdown("---")
     st.markdown("Numerous conflicts have caused NATO to make the decision to increase defense spending. The Russo-Ukrainian war, the war in Syria, and the war in Afghanistan have all contributed to this decision.")
     st.markdown("Let's assume that all NATO countries will spend 5% of their GDP on defense by 2027. \n This is a significant increase for some NATO countries. \n The map below shows the current military spending of all european countries.")

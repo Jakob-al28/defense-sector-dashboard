@@ -529,5 +529,5 @@ def news_analysis():
                 st.error(f"Could not fetch news data for '{search_query}'.")
     else:
         st.info("Enter a search term above to start analyzing news.")
-    
+    st.write("Analysis of the word cloud indicates strong media focus on corporate performance, with phrases like 'wertvollsten firmen' (most valuable companies) and references to 'Bloomberg' suggesting positive coverage. The presence of 'Nvidia' is particularly interesting, as research reveals this connects to favorable sentiment toward Rheinmetall, demonstrated in the article 'Neue Umfrage: Nvidia und Rheinmetall mit Abstand Lieblingsaktien der Deutschen.' This reinforces the relationship between investor sentiment and stock performance, likely to drive share prices up.")
     st.markdown("---")

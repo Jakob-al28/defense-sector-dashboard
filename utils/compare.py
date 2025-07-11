@@ -5,12 +5,12 @@ from backend import data_fetching
 import plotly.graph_objects as go
 
 def render_compare():
-    st.markdown("### Defense vs ESG: A Performance Comparison")
+    st.markdown("### Defense vs Vanguard FTSE All-World: A Performance Comparison")
     
     # Define sector groups
     defense_tickers = ["RTX", "PPA", "RHM.F", "HON", "LMT", "XAR", "ITA"]
-    esg_tickers = ["VSGX", "DSI", "EAGG", "ESGU", "ESGD", "ESGE", "CHGX"]
-    
+    # esg_tickers = ["VSGX", "DSI", "EAGG", "ESGU", "ESGD", "ESGE", "CHGX"]
+    esg_tickers = ["SPY", "IVV", "VOO", "VTI", "QQQ", "IWM", "DIA", "EEM", "GLD", "AGG"]
     # Fetch data for both sectors
     with st.spinner("Loading sector data..."):
         defense_data = data_fetching.get_top_stocks_quotes(defense_tickers)
@@ -37,7 +37,7 @@ def render_compare():
     
     with col2:
         st.metric(
-            "ESG Sector", 
+            "All-World ETF", 
             f"{esg_avg_change:+.1f}%",
             delta="Daily Average", 
             delta_color="normal"
@@ -48,13 +48,13 @@ def render_compare():
         st.metric(
             "Performance Gap",
             f"{performance_gap:+.1f}%",
-            delta="Defense vs ESG",
+            delta="Defense vs Global Market",
             delta_color="normal"
         )
         
     # Get historical data for representative ETFs
     defense_etf = "PPA"  # SPDR S&P Aerospace & Defense ETF
-    esg_etf = "ESGU"     # iShares MSCI KLD 400 Social ETF
+    esg_etf = "VGWL.DE"     # iShares MSCI KLD 400 Social ETF
     
     try:
         defense_hist = yf.Ticker(defense_etf).history(period="6mo")
@@ -83,9 +83,9 @@ def render_compare():
                 x=esg_norm.index,
                 y=esg_norm.values,
                 mode='lines',
-                name='ESG (ESGU)',
+                name='Vanguard FTSE All-World (VGWL.DE)',
                 line=dict(color='#4ecdc4', width=3),
-                hovertemplate='<b>ESG Sector</b><br>' +
+                hovertemplate='<b>Global Market ETF</b><br>' +
                             'Date: %{x}<br>' +
                             'Performance: %{y:.1f}%<extra></extra>'
             ))
@@ -115,37 +115,37 @@ def render_compare():
             with col1:
                 st.metric("Defense 6M Return", f"{defense_total_return:+.1f}%")
             with col2:
-                st.metric("ESG 6M Return", f"{esg_total_return:+.1f}%")
+                st.metric("Global Market ETF 6M Return", f"{esg_total_return:+.1f}%")
                 
     except Exception as e:
         st.warning("Unable to load historical performance data")
     
     # Sector composition and key insights
-    st.markdown("### Key Insights")
+    # st.markdown("### Key Insights")
     
-    col1, col2 = st.columns(2)
+    # col1, col2 = st.columns(2)
     
-    with col1:
-        st.markdown("#### Defense Sector Highlights")
-        st.write("• **Key Players**: Raytheon, Lockheed Martin, Rheinmetall")
+    # with col1:
+    #     st.markdown("#### Defense Sector Highlights")
+    #     st.write("• **Key Players**: Raytheon, Lockheed Martin, Rheinmetall")
         
-        # Show top performers
-        if not defense_data.empty:
-            top_defense = defense_data.nlargest(3, 'change_pct')[['ticker', 'name', 'change_pct']]
-            st.markdown("**Top Performers Today:**")
-            for _, row in top_defense.iterrows():
-                st.write(f"• {row['ticker']}: {row['change_pct']:+.1f}%")
+    #     # Show top performers
+    #     if not defense_data.empty:
+    #         top_defense = defense_data.nlargest(3, 'change_pct')[['ticker', 'name', 'change_pct']]
+    #         st.markdown("**Top Performers Today:**")
+    #         for _, row in top_defense.iterrows():
+    #             st.write(f"• {row['ticker']}: {row['change_pct']:+.1f}%")
     
-    with col2:
-        st.markdown("#### ESG Sector Highlights")
-        st.write("• **Focus**: Environmental, Social, Governance criteria")
+    # with col2:
+    #     st.markdown("#### ESG Sector Highlights")
+    #     st.write("• **Focus**: Environmental, Social, Governance criteria")
         
-        # Show top performers
-        if not esg_data.empty:
-            top_esg = esg_data.nlargest(3, 'change_pct')[['ticker', 'name', 'change_pct']]
-            st.markdown("**Top Performers Today:**")
-            for _, row in top_esg.iterrows():
-                st.write(f"• {row['ticker']}: {row['change_pct']:+.1f}%")
+    #     # Show top performers
+    #     if not esg_data.empty:
+    #         top_esg = esg_data.nlargest(3, 'change_pct')[['ticker', 'name', 'change_pct']]
+    #         st.markdown("**Top Performers Today:**")
+    #         for _, row in top_esg.iterrows():
+    #             st.write(f"• {row['ticker']}: {row['change_pct']:+.1f}%")
     
     # Risk comparison
     if len(defense_data) > 0 and len(esg_data) > 0:
@@ -158,9 +158,9 @@ def render_compare():
         with col1:
             st.metric("Defense Volatility", f"{defense_volatility:.1f}%", delta="Daily volatility")
         with col2:
-            st.metric("ESG Volatility", f"{esg_volatility:.1f}%", delta="Daily volatility")
+            st.metric("Global ETF Volatility", f"{esg_volatility:.1f}%", delta="Daily volatility")
         
         if defense_volatility > esg_volatility:
             st.write("Defense sector shows higher volatility, reflecting the impact of geopolitical events on defense stocks.")
         else:
-            st.write("ESG sector shows higher volatility, possibly due to diverse holdings and market sentiment shifts.")
+            st.write("Global Market ETF shows higher volatility, possibly due to diverse holdings and market sentiment shifts.")

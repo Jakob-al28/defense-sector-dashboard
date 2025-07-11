@@ -100,6 +100,7 @@ def get_top_stocks_quotes(tickers):
             successful_tickers.append(ticker)
             
         except Exception as e:
+            print(e)
             failed_tickers.append(ticker)
             
             quotes.append({

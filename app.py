@@ -41,10 +41,9 @@ st.markdown(
 )
 
 
-st.title("An outlook on global affairs - Interactive Dashboard")
+st.markdown("## An outlook on the Defense Industry And Its Growth Potential")
 
 tab1, tab2, tab3 = st.tabs(["Overview", "Markets", "News Analysis"])
-
 with tab1:
     render_tab1()
 

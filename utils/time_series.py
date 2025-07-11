@@ -560,6 +560,22 @@ def create_time_series_plot(data_df: DataFrame, markers_df: DataFrame, countries
             hoverlabel=dict(font_size=16) 
         )
         
+        if data_type == 'Military Expenditure':
+            reference_value = 5  
+            fig.update_layout(yaxis=dict(tickformat=',.0f'))
+        else:
+            reference_value = None  
+            
+        if reference_value is not None:
+            fig.add_hline(
+                y=reference_value, 
+                line=dict(
+                    color='rgba(200, 200, 200, 0.6)',
+                    width=1.5,
+                    dash='dash'
+                ),
+            )
+
         st.plotly_chart(fig, use_container_width=True)
 
 def save_country_preset(countries: list, preset_name: Optional[str] = None) -> bool:

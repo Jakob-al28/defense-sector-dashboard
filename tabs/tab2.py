@@ -23,19 +23,18 @@ def render_tab2():
         "If we look at the SPDR S&P Aerospace & Defense ETF (PPA), it has gained about 23% over the last six months "
         "and roughly 100% since the beginning of the Ukraine conflict."
     )
-    st.write("Further metrics like the moving average and the risk analysis also shows the performance of the sector.")
+    st.write("Further metrics like the moving average and the risk analysis also show the performance of the sector, since the short term Moving Average is above the long term Moving Average. However, recently, both seem to have a similar trend, indicating possible uncertainty for the short term future.")    # st.write(
+    #     "As this growth influences industry activity, several counterarguments arise. "
+    #     "Sustainability is a major concern, since the defense industry is often associated with environmental degradation and human rights violations. Some argue, however, that the defense industry is necessary for national security and that it can contribute to economic growth and job creation, and thus be considered sustainable."
+    # )
     st.write(
-        "As this growth influences industry activity, several counterarguments arise. "
-        "Sustainability is a major concern, since the defense industry is often associated with environmental degradation and human rights violations. Some argue, however, that the defense industry is necessary for national security and that it can contribute to economic growth and job creation, and thus be considered sustainable."
-    )
-    st.write(
-        "We will now take a closer look at sustainability by comparing ESG funds with defense funds, and then contrasting ESG funds that regard defense activities as sustainable versus those that do not." 
+    "Because it is interesting to benchmark the defense industry against the global one, we will now take a closer look at the global market by comparing global ETF funds with defense funds." 
     )
     st.write("---")
     render_compare()
     st.write("---")
     st.write(
-        "The analysis shows that the defense industry has been outperforming the ESG sector over the past six months.\n"
+        "It can be seen that the defense industry has been outperforming the global ETF over the past six months.\n"
         "Taking NATO’s goals into account, there will be changes. We will now take a look at the news sentiment towards this change."
     )
     if st.button("Proceed to News Analysis.", use_container_width=True, key="tab3_button"):
