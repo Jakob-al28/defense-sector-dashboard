@@ -12,6 +12,7 @@ def render_tab3():
     news_analysis()
     st.write(
         "It can be seen that the sentiment towards Rheinmetall is slightly more positive, with headlines underlining the recent new contracts for Rheinmetall and indicating a positive outlook. "
+        "Another argument for the growth of the defense industry especially in the european sector is recent news regarding trading tariffs with the US. Europe will be more independent from the US with companies like Rheinmetall."
         "Further analysis could also examine social media sentiment (Reddit, X (Twitter) etc.) to get a broader view. "   
         "While predicting the market is difficult, many factors, such as NATO’s decision to increase defense spending and other market indicators, suggest an upward trajectory. \n Therefore, over the the next years, the defense industry is likely to grow, even if a short-term correction may occur."     
     )

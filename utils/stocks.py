@@ -417,7 +417,7 @@ def render_stocks():
                         ma_unit = "minutes"
                     
                     with ma_col1:
-                        show_ma = st.checkbox("Show Moving Averages", value=True, key="show_moving_averages")
+                        show_ma = st.checkbox("Show Moving Averages", value=True, key="show_moving_averages", help="20-day MA = average of today's price + previous 19 days.")
                     
                     with ma_col2:
                         short_ma = st.slider(
@@ -701,21 +701,23 @@ def render_stocks():
                                 st.metric(
                                     "Annualized Return",
                                     f"{annualized_return:.2%}",
-                                    delta=None
+                                    delta=None,
                                 )
                             
                             with risk_col2:
                                 st.metric(
                                     "Annualized Volatility",
                                     f"{annualized_volatility:.2%}",
-                                    delta=None
+                                    delta=None,
+                                    help = "Annualized volatility is the standard deviation of returns."
                                 )
                             
                             with risk_col3:
                                 st.metric(
                                     "Sharpe Ratio",
                                     f"{sharpe_ratio:.2f}",
-                                    delta="Good (above 1)" if sharpe_ratio > 1 else "Poor" if sharpe_ratio < 0 else "Fair"
+                                    delta="Good (above 1)" if sharpe_ratio > 1 else "Poor" if sharpe_ratio < 0 else "Fair",
+                                    help="Sharpe Ratio is calculated as (Annualized Return - Risk-Free Rate) / Annualized Volatility. A higher Sharpe Ratio indicates better risk-adjusted returns."
                                 )
                             
                             with risk_col4:
@@ -723,7 +725,8 @@ def render_stocks():
                                 st.metric(
                                     "VaR (95%)",
                                     f"{var_95:.2%}",
-                                    delta="Max 1-day loss"
+                                    delta="Max 1-day loss",
+                                    help="Value at Risk at 95% confidence level indicates the maximum expected loss that will NOT be exceeded on 95% of days. There's a 5% chance that daily losses could be worse than this value."
                                 )
                             
                             st.markdown("#### Interactive Value-at-Risk Analysis")

@@ -423,7 +423,7 @@ def render_time_series(data_type, clicked_countries=None):
                         elif not checked and country in st.session_state.selected_countries_timeseries:
                             st.session_state.selected_countries_timeseries.remove(country)
         
-    st.info(f"Missing values were estimated using interpolation methods (linear, polynomial, Trend Analysis). In the time series below, extrapolated data points are shown as orange diamonds while original data appears as blue circles.")
+    st.info(f"Missing values were estimated using interpolation methods (linear, polynomial, Trend Analysis). In the time series below, extrapolated data points are shown as orange diamonds while original data appears as blue circles. Edge extrapolation uses 5-point trend analysis with 50% slope dampening and minimum value floor of 3%.")
     active_countries = st.session_state.selected_countries_timeseries
 
     create_time_series_plot(df, markers, active_countries, data_type, title=data_type)
